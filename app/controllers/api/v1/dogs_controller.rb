@@ -16,4 +16,13 @@ class DogsController Api::V1::ApplicationController
       render json: {message: "Dog cannot be found!"}, status: :bad_request
     end
   end
+
+  def create
+    dog = Dog.new(dog_params)
+    if dog.save 
+      render json: {status: "SUCCESS", data: dog, message: "Dog created!"}, status: :created
+    else 
+      render json: dog.errors, status: :unprocessable_entity
+    end
+  end
 end

@@ -25,4 +25,13 @@ class DogsController Api::V1::ApplicationController
       render json: dog.errors, status: :unprocessable_entity
     end
   end
+
+  def destroy
+    dog = Dog.find(params[:id])
+    if dog.destroy!
+      render json: {message: "Dog was deleted succesfully"}, status: :ok
+    else
+      render json: {message: "Dog does not exist"}, status: :bad_request
+    end
+  end
 end

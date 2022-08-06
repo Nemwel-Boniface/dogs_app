@@ -43,4 +43,17 @@ class DogsController Api::V1::ApplicationController
       render json: {message: "Dog cannot be updated!"}, status: :unprocessable_entity
     end
   end
+
+  private 
+
+  def dog_params 
+    params.require(:dog).permit(:name, :breed, :age)
+  end
 end
+
+# module Api
+#   module V1
+#     class DogsController < ApplicationController
+#     end
+#   end
+# end

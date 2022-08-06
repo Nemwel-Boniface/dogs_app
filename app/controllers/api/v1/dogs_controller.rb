@@ -34,4 +34,13 @@ class DogsController Api::V1::ApplicationController
       render json: {message: "Dog does not exist"}, status: :bad_request
     end
   end
+
+  def update
+    dog = Dog.find(params[:id])
+    if dog.update!(dog_params)
+      render json: {message: "Dog was updated succesfully!", data: dog}, status: :ok
+    else
+      render json: {message: "Dog cannot be updated!"}, status: :unprocessable_entity
+    end
+  end
 end
